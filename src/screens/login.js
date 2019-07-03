@@ -7,6 +7,7 @@ import {
     View
 } from 'react-native';
 
+import RNSimData from 'react-native-sim-data';
 
 
 
@@ -26,7 +27,7 @@ export default class Login extends Component {
               <View style={{width: 500, height: 800, backgroundColor: 'skyblue'}}>
                    <Text 
                     style={{fontSize: 27}}>
-                    Login
+                     {JSON.stringify(RNSimData)}
                     </Text>
                 <TextInput placeholder='Username' onChangeText={(ID) => this.setState({ID})}/>
                 <TextInput label='Password' placeholder='Password' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
