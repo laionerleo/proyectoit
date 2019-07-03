@@ -19,7 +19,7 @@ export default class Login extends Component {
             return (      
               <View sstyle={{width: 100, height: 100, backgroundColor: 'skyblue'}}>
                     <TextInput
-                    style={{height: 40}}
+                    style={{height: 80}}
                     placeholder="Type here to translate!"
                     onChangeText={(text) => this.setState({text})}
                   />    
