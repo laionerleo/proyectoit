@@ -12,15 +12,13 @@ import {Platform, Button ,StyleSheet, Text,} from 'react-native';
 
 import {  createStackNavigator, createAppContainer  } from 'react-navigation';
 
+
 import Login from './src/screens/login';
 import inicio from './src/screens/inicio';
 
 const AppNavigator =  createStackNavigator({
-  loginscreen:{ screen: Login},
-  inicioscreen:{ screen: inicio}
-  
-
-
+  inicioscreen:{ screen: inicio},
+  loginscreen:{ screen: Login}
 });
 const Container = createAppContainer(AppNavigator);
 

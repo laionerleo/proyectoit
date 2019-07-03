@@ -4,11 +4,9 @@ import {
   Button,
      StyleSheet,
     Text,
+    Image,
     View
 } from 'react-native';
-
-
-
 
 
 
@@ -20,52 +18,78 @@ export default class Login extends Component {
   }
   static navigationOptions = {
     title : 'HOME',
+    headerTitleStyle: {
+      
+      textAlign: 'center'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    }
   }
 
     render() {
-         const { navigate } = this.props.navigation;
+         
             return (      
-              <View style={{width: 500, height: 800, backgroundColor: 'skyblue'}}>
-                   <Text 
-                    style={{fontSize: 27}}>
-                     
-                    </Text>
-                <TextInput placeholder='Username' onChangeText={(ID) => this.setState({ID})}/>
-                <TextInput label='Password' placeholder='Password' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
-                <Button 
-                    // onPress={() =>navigate('choferscreen')}// onPress={this.props.onLoginPress}
-                     onPress={this.validar}
-                      /// onPress={() => login()}
-                        title="iniciar"
-                    />
+              <View  style={styles.container}>
+                <View style={styles.img}>
 
+                <Image
+                        style={{width: 100, height: 100}}
+                          
+                        source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}          
+                      />
                 </View>
+
+                <View  >
+              
+                    <Text style={{fontSize: 27}}>
+                              {JSON.stringify(RNSimData.getSimInfo())}
+                    </Text>
+                    <TextInput style={styles.input} placeholder='Username' onChangeText={(ID) => this.setState({ID})}/>
+                    <TextInput style={styles.input} label='Password' placeholder='Password' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
+                    
+                </View>
+                <Button onPress={this.validar}     title="iniciar" />
+             </View>
   
             );
     }
 
 
+    validar=()=>{
+      const { navigate } = this.props.navigation;
+      navigate('inicioscreen');
+    }
+
 
 }
-const styles = StyleSheet.create({
-  image:{
-    position:'relative', 
-    width:100,
-    height:100,
-    flexDirection: 'column',
-    justifyContent: 'center',
 
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#3FFE'
   },
-  logoContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1
-    },
-    logo: {
-        width: 128,
-        height: 128,
-    },
-  textimput:{
-    borderColor: '#3498DB'
+  img: {
+    flexDirection: 'row'  , justifyContent: 'center', alignItems: 'center'
+  },
+  input: {
+    margin: 15,
+    height: 40,
+    borderColor: '#7a42f4',
+    borderWidth: 1
+ },
+
+
+  box1: {
+    backgroundColor: '#2196F3'
+  },
+  box2: {
+    backgroundColor: '#8BC34A'
+  },
+  box3: {
+    backgroundColor: '#e3aa1a'
   }
 });
