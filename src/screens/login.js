@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   TextInput,
+  Button,
      StyleSheet,
     Text,
     View
@@ -12,27 +13,29 @@ import {
 export default class Login extends Component {
   constructor(props){
     super(props);
+    this.state ={ isLoading: false ,ID: null, CONTRASENA: null}
     
   }
+  static navigationOptions = {
+    title : 'HOME',
+  }
+
     render() {
          const { navigate } = this.props.navigation;
             return (      
-              <View sstyle={{width: 100, height: 100, backgroundColor: 'skyblue'}}>
-                    <TextInput
-                    style={{height: 80}}
-                    placeholder="Type here to translate!"
-                    onChangeText={(text) => this.setState({text})}
-                  />    
-                    <Text 
-                        style={{fontSize: 27 , alignItems:'center' }}>
-                        Login
+              <View style={{width: 500, height: 800, backgroundColor: 'skyblue'}}>
+                   <Text 
+                    style={{fontSize: 27}}>
+                    Login
                     </Text>
-                    <TextInput
-                    style={{height: 40}}
-                    placeholder="Type here to translate!"
-                    onChangeText={(text) => this.setState({text})}
-                  />
-
+                <TextInput placeholder='Username' onChangeText={(ID) => this.setState({ID})}/>
+                <TextInput label='Password' placeholder='Password' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
+                <Button 
+                    // onPress={() =>navigate('choferscreen')}// onPress={this.props.onLoginPress}
+                     onPress={this.validar}
+                      /// onPress={() => login()}
+                        title="iniciar"
+                    />
 
                 </View>
   
