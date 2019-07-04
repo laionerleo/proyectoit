@@ -19,6 +19,7 @@ import inicio from './src/screens/inicio';
 const AppNavigator =  createStackNavigator({
   inicioscreen:{ screen: inicio},
   loginscreen:{ screen: Login}
+  
 });
 const Container = createAppContainer(AppNavigator);
 

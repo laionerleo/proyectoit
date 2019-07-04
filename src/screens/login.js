@@ -44,7 +44,7 @@ export default class Login extends Component {
                 <View  >
               
                     <Text style={{fontSize: 27}}>
-                              {JSON.stringify(RNSimData.getSimInfo())}
+                              
                     </Text>
                     <TextInput style={styles.input} placeholder='Username' onChangeText={(ID) => this.setState({ID})}/>
                     <TextInput style={styles.input} label='Password' placeholder='Password' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
