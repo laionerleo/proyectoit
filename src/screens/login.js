@@ -5,7 +5,8 @@ import {
      StyleSheet,
     Text,
     Image,
-    View
+    View,
+    Alert
 } from 'react-native';
 
 
@@ -13,7 +14,7 @@ import {
 export default class Login extends Component {
   constructor(props){
     super(props);
-    this.state ={ isLoading: false ,ID: null, CONTRASENA: null}
+    this.state ={ isLoading: false ,ID: null, CONTRASENA: null , result :'hola mundo de text' }
     
   }
   static navigationOptions = {
@@ -41,26 +42,52 @@ export default class Login extends Component {
                       />
                 </View>
 
-                <View  >
+                <View>
               
                     <Text style={{fontSize: 27}}>
-                              
-                    </Text>
+                  {this.state.result}
+                                      </Text>
                     <TextInput style={styles.input} placeholder='Username' onChangeText={(ID) => this.setState({ID})}/>
-                    <TextInput style={styles.input} label='Password' placeholder='Password' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
+                    <TextInput style={styles.input} secureTextEntry={true} password={true} label='Password' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
                     
                 </View>
-                <Button onPress={this.validar}     title="iniciar" />
+                <View style={styles.btn} >
+                              <Button onPress={this.validar}     title="iniciar" />
+                 </View>
              </View>
   
             );
     }
 
 
-    validar=()=>{
-      const { navigate } = this.props.navigation;
-      navigate('inicioscreen');
-    }
+   
+validar=()=>{
+  
+  let data = new FormData();
+  data.append('phone', '75059257');
+  data.append('ci', '8929169');
+  data.append('key', '5933f8511c2304f61810d2a0ad8deb88');
+
+
+  let resultado= fetch('http://realty.it.srl.company/es/api/getbuy', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type' : 'multipart/form-data' 
+    },
+    
+    body: data,
+  }).then((response) => response.json())
+  .then((responseJson) => {
+        this.setState({ result: JSON.stringify( responseJson )});  
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+  
+  
+  
+}
 
 
 }
@@ -77,10 +104,13 @@ const styles = StyleSheet.create({
   },
   input: {
     margin: 15,
-    height: 40,
+    height: 60,
     borderColor: '#7a42f4',
-    borderWidth: 1
+    borderWidth: 1,
+    fontSize: 20,
  },
+ btn: { flex: 1, aspectRatio: 1.5, resizeMode: 'contain'  } ,
+
 
 
   box1: {
