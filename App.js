@@ -17,10 +17,19 @@ import Login from './src/screens/login';
 import inicio from './src/screens/inicio';
 
 const AppNavigator =  createStackNavigator({
-  
   loginscreen:{ screen: Login},
   inicioscreen:{ screen: inicio}
-});
+  
+  
+},
+{
+  initialRouteName: "inicioscreen"
+  
+}
+
+
+
+);
 const Container = createAppContainer(AppNavigator);
 
 

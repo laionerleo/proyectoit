@@ -2,23 +2,30 @@ import React, { Component } from 'react';
 import {
     Text,
     StyleSheet,
-    View
-    
+    View,
+    BackHandler,
+    TouchableOpacity,
+    Alert 
 } from 'react-native';
+import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
+import * as Animatable from 'react-native-animatable';
 
-const SECTIONS = [
+const CONTENT = [
   {
-    title: 'First',
-    content: 'Lorem ipsum...',
+    title: 'Terms and Conditions',
+    content:
+      'The following terms and conditions, together with any referenced documents (collectively, "Terms of Use") form a legal agreement between you and your employer, employees, agents, contractors and any other entity on whose behalf you accept these terms (collectively, “you” and “your”), and ServiceNow, Inc. (“ServiceNow,” “we,” “us” and “our”).',
   },
   {
-    title: 'Second',
-    content: 'Lorem ipsum...',
+    title: 'Privacy Policy',
+    content:
+      'A Privacy Policy agreement is the agreement where you specify if you collect personal data from your users, what kind of personal data you collect and what you do with that data.',
   },
   {
-    title: 'Tercero',
-    content: 'Lorem ipsum...',
+    title: 'Return Policy',
+    content:
+      'Our Return & Refund Policy template lets you get started with a Return and Refund Policy agreement. This template is free to download and use.According to TrueShip study, over 60% of customers review a Return/Refund Policy before they make a purchasing decision.',
   },
 ];
 
@@ -27,51 +34,112 @@ export default class inicio extends Component {
     super(props);
     
   }
+  static navigationOptions = {
+    title : 'inicio',
+  }
   state = {
       activeSections: [],
+      collapsed: true,
+      multipleSelect: false,
+      
     }; 
 
-  _renderSectionTitle = section => {
-    return (
-      <View style={styles.content}>
-        <Text>{section.content}</Text>
-      </View>
-    );
-  };
+   componentDidMount() {
+    
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    
+  }
 
-  _renderHeader = section => {
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    
+  }
+
+  handleBackPress = () => {
+    Alert.alert("esta seguro que quieres salir")
+
+    return true;
+  }
+
+  renderHeader = (section, _, isActive) => {
+    //Accordion Header view
     return (
-      <View style={styles.header}>
+      <Animatable.View
+        duration={400}
+        style={[styles.header, isActive ? styles.active : styles.inactive]}
+        transition="backgroundColor">
         <Text style={styles.headerText}>{section.title}</Text>
-      </View>
+      </Animatable.View>
     );
   };
-
-  _renderContent = section => {
+  renderContent(section, _, isActive) {
+    //Accordion Content view
     return (
-      <View style={styles.content}>
-        <Text>{section.content}</Text>
-      </View>
+      <Animatable.View
+        duration={400}
+        style={[styles.content, isActive ? styles.active : styles.inactive]}
+        transition="backgroundColor">
+        <Animatable.Text
+          animation={isActive ? 'bounceIn' : undefined}
+          style={{ textAlign: 'center' }}>
+          {section.content}
+        </Animatable.Text>
+      </Animatable.View>
     );
   };
 
-  _updateSections = activeSections => {
-    this.setState({ activeSections });
+ 
+  
+  
+  toggleExpanded = () => {
+
+    this.setState({ collapsed: !this.state.collapsed });
   };
 
-
+  setSections = sections => {
+    this.setState({
+      activeSections: sections.includes(undefined) ? [] : sections,
+    });
+  };
 
     render() {
          const { navigate } = this.props.navigation;
-            return (          
-              <Accordion
-              activeSections={[0]}
-              sections={['Section 1', 'Section 2', 'Section 3']}
-              renderSectionTitle={this._renderSectionTitle}
-              renderHeader={this._renderHeader}
-              renderContent={this._renderContent}
-              onChange={this._updateSections}
-            />
+         const { multipleSelect, activeSections } = this.state;
+         
+            return ( 
+              <View>
+                   
+          <Accordion
+                activeSections={this.state.activeSections}
+                //for any default active section
+                sections={CONTENT}
+                //title and content of accordion
+                touchableComponent={TouchableOpacity}
+                //which type of touchable component you want
+                //It can be the following Touchables
+                //TouchableHighlight, TouchableNativeFeedback
+                //TouchableOpacity , TouchableWithoutFeedback
+                expandMultiple={this.state.multipleSelect}
+                //Do you want to expand mutiple at a time or single at a time
+                renderHeader={this.renderHeader}
+                //Header Component(View) to render
+                renderContent={this.renderContent}
+                //Content Component(View) to render
+                duration={100}
+                //Duration for Collapse and expand
+                onChange={this.setSections}
+                //setting the state of active sections
+        />
+              
+
+              
+            </View>   
+         
+            
+
+
+
+
             );
     }
 
@@ -95,16 +163,16 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#F5FCFF',
-    padding: 10,
+    padding: 20,
   },
   headerText: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '500',
   },
   content: {
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: 'blue',
   },
   active: {
     backgroundColor: 'rgba(255,255,255,1)',
@@ -128,6 +196,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     padding: 10,
+    color: "blue"
   },
   multipleToggle: {
     flexDirection: 'row',
