@@ -31,9 +31,9 @@ export default class Login extends Component {
       
      
       if(this.state.isLoading){
-          if(this.state.result.compras !=null){
-            navigate('inicioscreen')
-          }
+          //if(this.state.result.compras>0 ){
+            navigate('inicioscreen' , {datoslogin: this.state.result })
+          //}
       }
          
             return (      
@@ -51,7 +51,7 @@ export default class Login extends Component {
                 </View>
 
                 <View>
-              
+                
                     
                     <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='NUMERO DE TELEFONO' onChangeText={(ID) => this.setState({ID})}/>
                     <TextInput style={styles.input} secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
@@ -68,14 +68,20 @@ export default class Login extends Component {
 
    
 validar=()=>{
-  const { navigate } = this.props.navigation;
-  navigate('inicioscreen')
-/*
-  if((this.state.ID.length > 0 ) && (this.state.CONTRASENA.length>0))  {
+  //const { navigate } = this.props.navigation;
+ // navigate('inicioscreen')
+
+  //if((this.state.ID.length > 0 ) && (this.state.CONTRASENA.length>0))  {
       let data = new FormData();
-      data.append('phone',this.state.ID );
+      data.append('phone','76366848' );
+      data.append('ci', '8926239');
+      data.append('key', '5933f8511c2304f61810d2a0ad8deb88');
+
+      
+/*      data.append('phone',this.state.ID );
       data.append('ci', this.state.CONTRASENA);
       data.append('key', '5933f8511c2304f61810d2a0ad8deb88');
+      */
 
       let resultado= fetch('http://realty.it.srl.company/es/api/getbuy', {
         method: 'POST',
@@ -83,23 +89,28 @@ validar=()=>{
           Accept: 'application/json',
           'Content-Type' : 'multipart/form-data' 
         },
-        
         body: data,
       }).then((response) => response.json())
       .then((responseJson) => {
             this.setState({
+              result: JSON.stringify( responseJson ),
+            
               isLoading: true, 
-              result: JSON.stringify( responseJson )});  
+            
+            }
+              );  
       })
       .catch((error) => {
         console.error(error);
       });
       
-    }else{
+    
+    /*}else{
         Alert.alert("por favor introducir datos")
 
     }
- */ 
+    */
+  
 }
 
 

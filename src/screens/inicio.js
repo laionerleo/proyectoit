@@ -11,49 +11,47 @@ import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
 import * as Animatable from 'react-native-animatable';
 
-const CONTENT = [
-  {
-    title: 'Terms and Conditions',
-    content:
-      'The following terms and conditions, together with any referenced documents (collectively, "Terms of Use") form a legal agreement between you and your employer, employees, agents, contractors and any other entity on whose behalf you accept these terms (collectively, “you” and “your”), and ServiceNow, Inc. (“ServiceNow,” “we,” “us” and “our”).',
-  },
-  {
-    title: 'Privacy Policy',
-    content:
-      'A Privacy Policy agreement is the agreement where you specify if you collect personal data from your users, what kind of personal data you collect and what you do with that data.',
-  },
-  {
-    title: 'Return Policy',
-    content:
-      'Our Return & Refund Policy template lets you get started with a Return and Refund Policy agreement. This template is free to download and use.According to TrueShip study, over 60% of customers review a Return/Refund Policy before they make a purchasing decision.',
-  },
-];
-
 export default class inicio extends Component {
   constructor(props){
     super(props);
+    const datos = this.props.navigation.state.params.datoslogin
+    this.state = {
+      activeSections: [],
+      collapsed: true,
+      multipleSelect: false,
+      login:datos,
+      loginjson:{},
+      
+    }
     
   }
   static navigationOptions = {
     title : 'inicio',
   }
-  state = {
-      activeSections: [],
-      collapsed: true,
-      multipleSelect: false,
-      
-    }; 
+  
 
    componentDidMount() {
     
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
     
+    
   }
 
   componentWillUnmount() {
+    
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
     
+    
+    
   }
+  componentWillMount(){
+
+   this.setState({ loginjson: JSON.parse(this.state.login) });
+    
+  }
+
+
+
 
   handleBackPress = () => {
     Alert.alert("esta seguro que quieres salir")
@@ -68,7 +66,7 @@ export default class inicio extends Component {
         duration={400}
         style={[styles.header, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor">
-        <Text style={styles.headerText}>{section.title}</Text>
+        <Text style={styles.headerText}>{section.Proyecto +"- Manzano :"+section.NroMzn + "- Lote: " + section.NroLote + " Saldo :" + (section.CostoTotal - section.TotalPagado)     }</Text>
       </Animatable.View>
     );
   };
@@ -82,7 +80,7 @@ export default class inicio extends Component {
         <Animatable.Text
           animation={isActive ? 'bounceIn' : undefined}
           style={{ textAlign: 'center' }}>
-          {section.content}
+          { " Titulares" +section.tituales[0]+"-" +section.tituales.ClienteDocumento + "- "+section.tituales.ClienteCelular }
         </Animatable.Text>
       </Animatable.View>
     );
@@ -106,13 +104,20 @@ export default class inicio extends Component {
          const { navigate } = this.props.navigation;
          const { multipleSelect, activeSections } = this.state;
          
+         
+         
             return ( 
               <View>
+                <Text>
+                
+                
+              
+                </Text>
                    
           <Accordion
-                activeSections={this.state.activeSections}
+                activeSections={activeSections}
                 //for any default active section
-                sections={CONTENT}
+                sections={this.state.loginjson.compras}
                 //title and content of accordion
                 touchableComponent={TouchableOpacity}
                 //which type of touchable component you want
@@ -166,7 +171,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   headerText: {
-    textAlign: 'center',
+  textAlign: 'center',
     fontSize: 18,
     fontWeight: '500',
   },
