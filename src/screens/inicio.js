@@ -26,7 +26,7 @@ export default class inicio extends Component {
     
   }
   static navigationOptions = {
-    title : 'inicio',
+    header: null 
   }
   
 

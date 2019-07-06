@@ -9,8 +9,7 @@ import {
     View,
     Alert
 } from 'react-native';
-import DeviceInfo from 'react-native-device-info';
-import RNSimData from 'react-native-sim-data';
+
 
 const {width,height}= Dimensions.get("window");
 
@@ -27,7 +26,7 @@ export default class Login extends Component {
  
 
     render() {
-      const isTablet = DeviceInfo.getCodename();
+      
       const { navigate } = this.props.navigation;
       
      
@@ -114,7 +113,8 @@ validar=()=>{
               );  
       })
       .catch((error) => {
-        console.error(error);
+        Alert.alert("sin internet")
+
       });
       
     
