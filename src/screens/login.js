@@ -17,13 +17,14 @@ const {width,height}= Dimensions.get("window");
 export default class Login extends Component {
   constructor(props){
     super(props);
-    this.state ={ isLoading: false ,ID: '', CONTRASENA: '' , result :'', deviceinfo: {} }
+    this.state ={ isLoading: false ,ID: '', CONTRASENA: '' , result :'' , resultjson:{} , deviceinfo: {} }
     
   }
   
   static navigationOptions = {
     header: null 
   }
+ 
 
     render() {
       const isTablet = DeviceInfo.getCodename();
@@ -31,9 +32,17 @@ export default class Login extends Component {
       
      
       if(this.state.isLoading){
-          //if(this.state.result.compras>0 ){
-            navigate('inicioscreen' , {datoslogin: this.state.result })
-          //}
+          //this.actualizarjson();
+          
+          if(this.state.resultjson.compras.length >0 ){
+          navigate('inicioscreen' , {datoslogin: this.state.result })
+          }else{
+            this.setState({
+              isLoading: false, 
+            }
+              );  
+            Alert.alert("datos incorrectos");
+          }
       }
          
             return (      
@@ -54,7 +63,7 @@ export default class Login extends Component {
                 
                     
                     <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='NUMERO DE TELEFONO' onChangeText={(ID) => this.setState({ID})}/>
-                    <TextInput style={styles.input} secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
+                    <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
                     
                 </View>
                 <View style={styles.btn} >
@@ -71,17 +80,17 @@ validar=()=>{
   //const { navigate } = this.props.navigation;
  // navigate('inicioscreen')
 
-  //if((this.state.ID.length > 0 ) && (this.state.CONTRASENA.length>0))  {
+  if((this.state.ID.length > 0 ) && (this.state.CONTRASENA.length>0))  {
       let data = new FormData();
-      data.append('phone','76366848' );
+/*      data.append('phone','76366848' );
       data.append('ci', '8926239');
       data.append('key', '5933f8511c2304f61810d2a0ad8deb88');
 
-      
-/*      data.append('phone',this.state.ID );
+  */    
+      data.append('phone',this.state.ID );
       data.append('ci', this.state.CONTRASENA);
       data.append('key', '5933f8511c2304f61810d2a0ad8deb88');
-      */
+
 
       let resultado= fetch('http://realty.it.srl.company/es/api/getbuy', {
         method: 'POST',
@@ -93,9 +102,13 @@ validar=()=>{
       }).then((response) => response.json())
       .then((responseJson) => {
             this.setState({
-              result: JSON.stringify( responseJson ),
-            
+              result: JSON.stringify( responseJson ), 
+            });
+            this.setState({
+              
+              resultjson: JSON.parse(this.state.result),
               isLoading: true, 
+
             
             }
               );  
@@ -105,11 +118,11 @@ validar=()=>{
       });
       
     
-    /*}else{
+    }else{
         Alert.alert("por favor introducir datos")
 
     }
-    */
+    
   
 }
 
