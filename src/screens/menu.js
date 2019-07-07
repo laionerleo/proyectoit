@@ -13,7 +13,7 @@ import {
 
 const {width,height}= Dimensions.get("window");
 
-export default class Login extends Component {
+export default class Menu extends Component {
   constructor(props){
     super(props);
     this.state ={ isLoading: false ,ID: '', CONTRASENA: '' , result :'' , resultjson:{} , deviceinfo: {} }
@@ -30,48 +30,55 @@ export default class Login extends Component {
       const { navigate } = this.props.navigation;
       
      
-      if(this.state.isLoading){
-          //this.actualizarjson();
-          
-          if(this.state.resultjson.compras.length >0 ){
-          navigate('inicioscreen' , {datoslogin: this.state.result })
-          }else{
-            this.setState({
-              isLoading: false, 
-            }
-              );  
-            Alert.alert("datos incorrectos");
-          }
-      }
+
          
 
       
             return (      
-              <View  style={styles.container}>
-                <View style={styles.img}>
-                <Text style={{fontSize:50 ,fontWeight: 'bold',  fontFamily: 'sans-serif-medium' }}>
-                        Realty Client
-                </Text>
+              
+      <View style={styles.sideMenuContainer}>
+ 
+      <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/10/Guitar.jpg' }}
+        style={styles.sideMenuProfileIcon} />
 
-                <Image
-                        style={{width: 50, height: 200}}
-                          
-                        //source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}  
-                        source = {{uri : 'asset:./realty.png' }        }
-                      />
-                </View>
+      <View style={{ width: '100%', height: 1, backgroundColor: '#e2e2e2', marginTop: 15}} />
 
-                <View>
-                
-                    
-                    <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='NUMERO DE TELEFONO' onChangeText={(ID) => this.setState({ID})}/>
-                    <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
-                    
-                </View>
-                <View style={styles.btn} >
-                              <Button  onPress={this.validar}     title="iniciar" />
-                 </View>
-             </View>
+      <View style={{width: '100%'}}>
+
+          <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
+
+            <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/08/social.jpg' }}
+            style={styles.sideMenuIcon} />
+            
+            <Text style={styles.menuText} onPress={() => { this.props.navigation.navigate('First') }} > First Activity </Text>
+
+          </View>
+
+          <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
+
+            <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/08/promotions.jpg' }}
+            style={styles.sideMenuIcon} />
+
+            <Text style={styles.menuText} onPress={() => { this.props.navigation.navigate('Second') }} > Second Activity </Text>
+
+          </View>
+
+          <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
+
+            <Image source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/08/outbox.jpg' }}
+            style={styles.sideMenuIcon} />
+
+            <Text style={styles.menuText} onPress={() => { this.props.navigation.navigate('Third') }} > Third Activity </Text>
+
+          </View>
+
+
+     </View>
+
+     <View style={{ width: '100%', height: 1, backgroundColor: '#e2e2e2', marginTop: 15}} />
+
+
+    </View>
   
             );
     }

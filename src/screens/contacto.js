@@ -13,7 +13,7 @@ import {
 
 const {width,height}= Dimensions.get("window");
 
-export default class Login extends Component {
+export default class contacto extends Component {
   constructor(props){
     super(props);
     this.state ={ isLoading: false ,ID: '', CONTRASENA: '' , result :'' , resultjson:{} , deviceinfo: {} }
@@ -21,7 +21,8 @@ export default class Login extends Component {
   }
   
   static navigationOptions = {
-    header: null 
+    header: null ,
+    headerLeft: <iconoamburguesa navigationProps={navigation} />
   }
  
 
@@ -30,19 +31,6 @@ export default class Login extends Component {
       const { navigate } = this.props.navigation;
       
      
-      if(this.state.isLoading){
-          //this.actualizarjson();
-          
-          if(this.state.resultjson.compras.length >0 ){
-          navigate('inicioscreen' , {datoslogin: this.state.result })
-          }else{
-            this.setState({
-              isLoading: false, 
-            }
-              );  
-            Alert.alert("datos incorrectos");
-          }
-      }
          
 
       
@@ -68,9 +56,7 @@ export default class Login extends Component {
                     <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
                     
                 </View>
-                <View style={styles.btn} >
-                              <Button  onPress={this.validar}     title="iniciar" />
-                 </View>
+                
              </View>
   
             );

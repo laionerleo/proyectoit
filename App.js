@@ -10,20 +10,26 @@ import React, {Component} from 'react';
 import {Platform, Button ,StyleSheet, Text,} from 'react-native';
 
 
-import {  createStackNavigator, createAppContainer  } from 'react-navigation';
+import {  createStackNavigator, createAppContainer ,DrawerNavigator } from 'react-navigation';
 
 
 import Login from './src/screens/login';
 import inicio from './src/screens/inicio';
+import contacto from './src/screens/contacto';
+import iconoamburguesa from './src/screens/iconoamburguesa';
+
+
+
 
 const AppNavigator =  createStackNavigator({
   loginscreen:{ screen: Login},
-  inicioscreen:{ screen: inicio}
+  inicioscreen:{ screen: inicio},
+  contactoscreen : {screen : contacto}
   
   
 },
 {
-  initialRouteName: "loginscreen"
+  initialRouteName: "contactoscreen"
   
 }
 

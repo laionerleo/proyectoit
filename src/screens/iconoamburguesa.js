@@ -7,17 +7,23 @@ import {
     Image,
     Dimensions,
     View,
+    TouchableOpacity,
     Alert
 } from 'react-native';
 
-
-const {width,height}= Dimensions.get("window");
-
-export default class Login extends Component {
+ class iconoamburguesa extends Component {
   constructor(props){
     super(props);
     this.state ={ isLoading: false ,ID: '', CONTRASENA: '' , result :'' , resultjson:{} , deviceinfo: {} }
     
+  }
+  
+  toggleDrawer = () => {
+ 
+    console.log(this.props.navigationProps);
+ 
+    this.props.navigationProps.toggleDrawer();
+ 
   }
   
   static navigationOptions = {
@@ -30,48 +36,24 @@ export default class Login extends Component {
       const { navigate } = this.props.navigation;
       
      
-      if(this.state.isLoading){
-          //this.actualizarjson();
-          
-          if(this.state.resultjson.compras.length >0 ){
-          navigate('inicioscreen' , {datoslogin: this.state.result })
-          }else{
-            this.setState({
-              isLoading: false, 
-            }
-              );  
-            Alert.alert("datos incorrectos");
-          }
-      }
+
          
 
       
-            return (      
-              <View  style={styles.container}>
-                <View style={styles.img}>
-                <Text style={{fontSize:50 ,fontWeight: 'bold',  fontFamily: 'sans-serif-medium' }}>
-                        Realty Client
-                </Text>
+            return (    
+                <View style={{ flexDirection: 'row' }}>
+ 
+        <TouchableOpacity onPress={this.toggleDrawer.bind(this)} >
+ 
+          <Image
+            source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/04/hamburger_icon.png' }}
+            style={{ width: 25, height: 25, marginLeft: 5 }}
+          />
+ 
+        </TouchableOpacity>
+ 
+      </View>  
 
-                <Image
-                        style={{width: 50, height: 200}}
-                          
-                        //source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}  
-                        source = {{uri : 'asset:./realty.png' }        }
-                      />
-                </View>
-
-                <View>
-                
-                    
-                    <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='NUMERO DE TELEFONO' onChangeText={(ID) => this.setState({ID})}/>
-                    <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
-                    
-                </View>
-                <View style={styles.btn} >
-                              <Button  onPress={this.validar}     title="iniciar" />
-                 </View>
-             </View>
   
             );
     }
