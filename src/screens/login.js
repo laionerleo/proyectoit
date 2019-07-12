@@ -53,27 +53,19 @@ export default class Login extends Component {
       
             return (      
               <View  style={styles.container}>
-                <View style={styles.btnicon}>
-                <Icon onPress={() => this.props.navigation.openDrawer()}
-                  name='list'
-                  Size= '50' 
-                  iconStyle= {Size=50}
-                  color='white' />
-                </View>
-                
+               
                 
                          
                 <View style={styles.img}>
-                <Text style={{fontSize:10 ,fontWeight: 'bold',  fontFamily: 'sans-serif-medium' }}>
+                <Text style={{fontSize:40 ,fontWeight: 'bold',  fontFamily: 'sans-serif-medium' }}>
                         Realty Client
-                        {JSON.stringify(valor)}
-                        {JSON.stringify(valor1)}
+                        
                 </Text>
 
                 <Image
-                        style={{width: 50, height: 200}}
+                        style={{width: 150, height: 150}}
                           
-                        source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}  
+                        source={{uri: 'http://realty.it.srl.company/application/assets/images/logo-x-150.png'}}  
                       />
                 </View>
 
@@ -104,12 +96,11 @@ validar=()=>{
       data.append('ci', '8926239');
       data.append('key', '5933f8511c2304f61810d2a0ad8deb88');
 
-  /*  
+/*  
       data.append('phone',this.state.ID );
       data.append('ci', this.state.CONTRASENA);
       data.append('key', '5933f8511c2304f61810d2a0ad8deb88');
 */
-
       let resultado= fetch('http://realty.it.srl.company/es/api/getbuy', {
         method: 'POST',
         headers: {
@@ -137,7 +128,7 @@ validar=()=>{
       });
       
     
-    /*}else{
+  /*}else{
         Alert.alert("por favor introducir datos")
 
     }

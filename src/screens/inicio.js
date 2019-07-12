@@ -62,7 +62,17 @@ export default class inicio extends Component {
 
 
   handleBackPress = () => {
-    Alert.alert("esta seguro que quieres salir")
+    
+    Alert.alert(
+      'esta seguro de que quiere salir',
+      '',
+      [
+        
+        {text: 'CANCELAR'},
+        {text: 'ACEPTAR', onPress:() => BackHandler.exitApp()    },
+      ],
+      { cancelable: false }
+    )
 
     return true;
   }
@@ -75,14 +85,16 @@ export default class inicio extends Component {
         style={[styles.header, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor">
         <Text style={styles.headerText}>{section.Proyecto +"\n Manzano :"+section.NroMzn + "- Lote: " + section.NroLote +" \n Pago habilitado=" + section.pagoHabilitado.Recaudacion     }</Text>
+        <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1, }}/>
       </Animatable.View>
     );
   };
   renderContent(section, _, isActive) {
     //Accordion Content view
     var  cant = parseInt(section.pagos.length) ;
-    var i =-1;
-    var arraynuevo= section.pagos.reverse(); 
+    var i =cant;
+    
+
     
     return (
       
@@ -124,21 +136,19 @@ export default class inicio extends Component {
           <View>
           
           {
-            
-             
-            
             section.plandepago.map((pago)=>{
-              
-
-              if(i<cant-1){
-                i++;
+              i--; 
+              if(i>=0){
+                 
               return (<View style={{flex: 1, flexDirection: 'row',borderBottomColor: '#1D3E5E',borderBottomWidth: 1,}}>
                 <Text style={{ fontSize: 18 , flex: 1 }}> {pago.codigopago}</Text>
                 <Text style={{fontSize: 18, flex: 1}}>  {pago.date} {parseFloat( pago.mount).toFixed(2)  }</Text>
-                <Text style={{fontSize: 18 , flex: 1}}>  {  /*section.pagos[i].PagoMonto*/  arraynuevo[i].PagoMonto }</Text> 
+                <Text style={{fontSize: 18 , flex: 1}}>  {  section.pagos[i].PagoMonto  }</Text> 
+                
               </View>
               
               )
+              
               }else{ 
                    
                 return <View style={{flex: 1, flexDirection: 'row',borderBottomColor: '#1D3E5E',borderBottomWidth: 1,}}>
@@ -187,32 +197,34 @@ export default class inicio extends Component {
                 <View style={styles.btn}>
                 <Icon onPress={() => this.props.navigation.openDrawer()}
                   name='list'
-                  color='#00aced' />
+                  color='#00aced'
+                  fontSize='20' 
+                  />
                 </View>
                
-                <View style={{borderColor:'#00aced',borderBottomWidth:2.5,borderTopWidth:8}}>
-                  <Text style={{fontSize: 30, fontWeight: 'bold', }}>HOLA   {this.state.loginjson.compras[0].tituales[0].ClienteNombre}</Text>
-                  <Text style={{fontSize: 23, fontWeight: 'bold', }}>Celular  =  {this.state.loginjson.compras[0].tituales[0].ClienteCelular}</Text>
-                  <Text style={{fontSize: 23, fontWeight: 'bold', }}>Documento =  {this.state.loginjson.compras[0].tituales[0].ClienteDocumento}</Text>         
+                <View style={{borderColor:'#a0b1c1',borderBottomWidth:2.5,borderTopWidth:8}}>
+                  <Text style={{fontSize: 30, color:"black" }}>HOLA   {this.state.loginjson.compras[0].tituales[0].ClienteNombre}</Text>
+                  <Text style={{fontSize: 23,  }}>Telefono  =  {this.state.loginjson.compras[0].tituales[0].ClienteCelular}</Text>
+                  <Text style={{fontSize: 23,  }}>Documento =  {this.state.loginjson.compras[0].tituales[0].ClienteDocumento}</Text>         
                 </View>
                 
-                <View style={{borderColor:'#00aced',borderBottomWidth:8,borderTopWidth:8}}>
-                <Text style={{fontSize: 22, fontWeight: 'bold', }}>PALMAS DEL URUBO SRL </Text>
+                <View style={{borderColor:'#a0b1c1',borderBottomWidth:8,borderTopWidth:8}}>
+                <Text style={{fontSize: 22,fontFamily:'-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji', fontWeight: 'bold', }}>PALMAS DEL URUBO SRL </Text>
                 <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}/>
-                <Text style={{fontSize: 18, }}>Celular   {this.state.loginjson.company.empresaCelular}</Text>
+                <Text style={{fontSize: 18, color:"black" }}>Celular   {this.state.loginjson.company.empresaCelular}</Text>
                 <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}/>
-                  <Text style={{fontSize: 18 , }}>Telefono   {this.state.loginjson.company.empresaTelefono}</Text>
+                  <Text style={{fontSize: 18 ,color:"black" }}>Telefono   {this.state.loginjson.company.empresaTelefono}</Text>
                   <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}/>
-                  <Text style={{fontSize: 18, }}>Email    {this.state.loginjson.company.empresaEmail}</Text>
+                  <Text style={{fontSize: 18,color:"black" }}>Email    {this.state.loginjson.company.empresaEmail}</Text>
                   <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}/>
-                  <Text style={{fontSize: 18 , }}>Direccion    {this.state.loginjson.company.empresaDireccion}</Text>         
+                  <Text style={{fontSize: 18 , color:"black"}}>Direccion    {this.state.loginjson.company.empresaDireccion}</Text>         
                  
                 </View>
               
                 
                 
               
-           <View style={{ borderRadius: 4,borderWidth: 0.5,borderColor: '#d6d7da',}}>
+           <View style={{ borderRadius: 4,borderWidth: 0.5,borderColor: '#C4CCCB',}}>
                    
           <Accordion
                 activeSections={activeSections}
@@ -303,6 +315,7 @@ const styles = StyleSheet.create({
   textAlign: 'center',
     fontSize: 18,
     fontWeight: '500',
+    color : "#007bff"
   },
   content: {
     padding: 10,

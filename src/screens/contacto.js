@@ -5,11 +5,12 @@ import {
      StyleSheet,
     Text,
     Image,
+    BackHandler,
     Dimensions,
     View,
     Alert
 } from 'react-native';
-
+import { Icon } from 'react-native-elements';
 
 const {width,height}= Dimensions.get("window");
 
@@ -36,18 +37,34 @@ export default class contacto extends Component {
       
             return (      
               <View  style={styles.container}>
+                <View style={styles.btn}>
+                <Icon onPress={() => this.props.navigation.openDrawer()}
+                  name='list'
+                  color='#00aced'
+                  />
+                </View>
+
                 <View style={styles.img}>
                 <Image
-                        style={{width: 50, height: 200}}                        
-                        source = {{uri : 'asset:./src/screens/realty.png' }        }
+                        style={{width: 200, height: 200}}                        
+                       // source = {{uri : 'http://realty.it.srl.company/application/assets/images/logo-x-150.png' }        }
                       />
                 </View>
 
-                <View>
+                <View style={{flexDirection: 'column',justifyContent: 'center', alignItems: 'center'}}>
+                <Text style={{fontSize: 18 , color:"black" }}>PALMAS DEL URUBO SRL </Text>         
+                <Text style={{fontSize: 18 , color:"black"}}>Celular	67789783</Text>         
+                <Text style={{fontSize: 18 , color:"black"}}>Teléfono	36936558</Text>         
+                <Text style={{fontSize: 18 , color:"black"}}>Email	urubo@gmail.com</Text>  
+                <Text style={{fontSize: 18 , color:"black"}}>Dirección	Av. Seoane #32 Edificio San Jorge</Text>  
+                       
+                
+
+
+
+
                 
                     
-                    <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='NUMERO DE TELEFONO' onChangeText={(ID) => this.setState({ID})}/>
-                    <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
                     
                 </View>
                 
@@ -81,9 +98,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     backgroundColor: 'white'
  },
- btn: { flexDirection: 'column', width: width,  height:150 , padding: 5,  } ,
-
-
+ btn: { flexDirection: 'column', width:40 , padding: 5,  } ,
 
   box1: {
     backgroundColor: '#2196F3'
