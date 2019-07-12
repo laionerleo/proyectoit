@@ -5,52 +5,60 @@ import {
      StyleSheet,
     Text,
     Image,
+    Header,
     Dimensions,
     View,
-    Alert
+    Left,
+    Icon,
+    Right,
+    Alert,
 } from 'react-native';
 
 
 const {width,height}= Dimensions.get("window");
 
-export default class contacto extends Component {
+export default class vista1 extends Component {
   constructor(props){
     super(props);
     this.state ={ isLoading: false ,ID: '', CONTRASENA: '' , result :'' , resultjson:{} , deviceinfo: {} }
     
   }
+ 
+ 
   
-  static navigationOptions = {
-    header: null ,
-    
-  }
  
 
     render() {
       
-      const { navigate } = this.props.navigation;
-      
-     
-         
-
-      
-            return (      
+            return (   
+            
+              
               <View  style={styles.container}>
+                  <Button  onPress={() => this.props.navigation.openDrawer()}     title="iniciar" />
+              
                 <View style={styles.img}>
+                <Text style={{fontSize:50 ,fontWeight: 'bold',  fontFamily: 'sans-serif-medium' }}>
+                        Realty Client
+                </Text>
+
                 <Image
-                        style={{width: 50, height: 200}}                        
-                        source = {{uri : 'asset:./src/screens/realty.png' }        }
+                        style={{width: 50, height: 200}}
+                          
+                        
+                        source = {{uri : 'asset:./realty.png' }        }
                       />
                 </View>
 
                 <View>
                 
                     
-                    <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='NUMERO DE TELEFONO' onChangeText={(ID) => this.setState({ID})}/>
+                    <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='vista1111' onChangeText={(ID) => this.setState({ID})}/>
                     <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
-                    
+                     
                 </View>
-                
+               
+
+                 
              </View>
   
             );

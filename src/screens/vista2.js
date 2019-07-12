@@ -13,23 +13,16 @@ import {
 
 const {width,height}= Dimensions.get("window");
 
-export default class contacto extends Component {
+export default class vista2 extends Component {
   constructor(props){
     super(props);
     this.state ={ isLoading: false ,ID: '', CONTRASENA: '' , result :'' , resultjson:{} , deviceinfo: {} }
     
   }
-  
-  static navigationOptions = {
-    header: null ,
-    
-  }
- 
 
     render() {
       
-      const { navigate } = this.props.navigation;
-      
+    
      
          
 
@@ -37,16 +30,22 @@ export default class contacto extends Component {
             return (      
               <View  style={styles.container}>
                 <View style={styles.img}>
+                <Text style={{fontSize:50 ,fontWeight: 'bold',  fontFamily: 'sans-serif-medium' }}>
+                        Realty Client
+                </Text>
+
                 <Image
-                        style={{width: 50, height: 200}}                        
-                        source = {{uri : 'asset:./src/screens/realty.png' }        }
+                        style={{width: 50, height: 200}}
+                          
+                        
+                        source = {{uri : 'asset:./realty.png' }        }
                       />
                 </View>
 
                 <View>
                 
                     
-                    <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='NUMERO DE TELEFONO' onChangeText={(ID) => this.setState({ID})}/>
+                    <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='vista 22' onChangeText={(ID) => this.setState({ID})}/>
                     <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
                     
                 </View>

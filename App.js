@@ -7,36 +7,62 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, Button ,StyleSheet, Text,} from 'react-native';
-
-
-import {  createStackNavigator, createAppContainer ,DrawerNavigator } from 'react-navigation';
+import {  createStackNavigator, createAppContainer ,createDrawerNavigator  } from 'react-navigation';
+import {
+  TextInput,
+  ScrollView,
+    Dimensions,
+    Text,
+    TouchableOpacity,
+    Alert
+} from 'react-native';
 
 
 import Login from './src/screens/login';
-import inicio from './src/screens/inicio';
+import menu from './src/screens/menu';
 import contacto from './src/screens/contacto';
-import iconoamburguesa from './src/screens/iconoamburguesa';
+import inicio from './src/screens/inicio';
+import vista1 from './src/screens/vista1';
+import vista2 from './src/screens/vista2';
 
 
 
+
+
+const RootDrawer = createDrawerNavigator(
+	{
+    loginscreen:{ screen: Login},
+    inicioscreen: {screen: inicio},
+    vista1screen:{ screen: vista1},
+    vista2screen: {screen: vista2},
+    contactoscreen: {screen: contacto},
+    
+    
+  },
+  {
+    initialRouteName: "loginscreen",
+contentComponent: (menu),
+  drawerWidth: Dimensions.get('window').width - 120, 
+  headertitle: "vista1"
+ 
+  }
+);
 
 const AppNavigator =  createStackNavigator({
   loginscreen:{ screen: Login},
-  inicioscreen:{ screen: inicio},
-  contactoscreen : {screen : contacto}
-  
-  
+  inicioscreen: {screen: inicio},
 },
 {
-  initialRouteName: "contactoscreen"
+  initialRouteName: "loginscreen",
+  contentComponent: menu,
+  drawerWidth: Dimensions.get('window').width -150 ,  
   
-}
+});
 
 
+const Container2 = createAppContainer(RootDrawer);
 
-);
-const Container = createAppContainer(AppNavigator);
+
 
 
 
@@ -45,7 +71,8 @@ export default class App extends Component {
     isLoggedIn: false
   }
   render() {
-      return  ( <Container />); 
+      return  ( <Container2 />); 
+     
   }
 }
 

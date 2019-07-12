@@ -33,7 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNSimDataReactPackage(),
             
             new RNGestureHandlerPackage(),
-            new RNDeviceInfo(true)
+            new RNDeviceInfo()
   //           new RNGestureHandlerPackage()
       );
     }
