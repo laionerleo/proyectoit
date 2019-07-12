@@ -53,32 +53,30 @@ export default class Login extends Component {
       
             return (      
               <View  style={styles.container}>
-               
-                
-                         
                 <View style={styles.img}>
-                <Text style={{fontSize:40 ,fontWeight: 'bold',  fontFamily: 'sans-serif-medium' }}>
-                        Realty Client
-                        
-                </Text>
-
                 <Image
                         style={{width: 150, height: 150}}
                           
                         source={{uri: 'http://realty.it.srl.company/application/assets/images/logo-x-150.png'}}  
                       />
+                      
                 </View>
-
-                <View>
+                <View style={{backgroundColor: 'white'}}>
+                  <View style={styles.img}>
+                <Text style={{fontSize:40 , justifyContent: 'center', alignItems: 'center', fontFamily: 'Poppins' }}>
+                        Acceso al cliente
+                </Text>
+                </View>
                 
-                    
+                    <Text style={{fontSize: 15,marginLeft: 15, color:"black",fontFamily: 'calibri light' }}>Nro. Celular*</Text>
                     <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='NUMERO DE TELEFONO' onChangeText={(ID) => this.setState({ID})}/>
+                    <Text style={{fontSize: 15, marginLeft: 15,color:"black" ,fontFamily: 'calibri light' }}>Password*</Text>
                     <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
-                    
-                </View>
-                <View style={styles.btn} >
-                              <Button  onPress={this.validar}     title="iniciar" />
+                    <View style={styles.btn} >
+                              <Button  onPress={this.validar}     title="Entrar" />
                  </View>
+                </View>
+               
              </View>
   
             );
@@ -144,21 +142,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#3980fc'
+    backgroundColor: '#3980fc',
+    
   },
   img: {
-    flexDirection: 'column'  , height: 250 , justifyContent: 'center', alignItems: 'center'
+    flexDirection: 'column' , marginTop:15 , justifyContent: 'center', alignItems: 'center'
   },
   input: {
     margin: 15,
     height: 60,
     width: width-30,
-    borderColor: '#7a42f4',
-    borderWidth: 3,
-    fontSize: 20,
+    
+    borderWidth: 1,
+    fontSize: 25,
     backgroundColor: 'white'
  },
- btn: { flexDirection: 'column', width: width,  height:150 , padding: 5,  } ,
+ btn: { flexDirection: 'column', width: width,padding: 5,  } ,
  btnicon: {  width:50 , height: 50  } ,
 
 
