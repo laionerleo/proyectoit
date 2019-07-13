@@ -52,11 +52,11 @@ export default class contacto extends Component {
                 </View>
 
                 <View style={{flexDirection: 'column',justifyContent: 'center', alignItems: 'center'}}>
-                <Text style={{fontSize: 18 , color:"black" }}>PALMAS DEL URUBO SRL </Text>         
-                <Text style={{fontSize: 18 , color:"black"}}>Celular	67789783</Text>         
-                <Text style={{fontSize: 18 , color:"black"}}>Teléfono	36936558</Text>         
-                <Text style={{fontSize: 18 , color:"black"}}>Email	urubo@gmail.com</Text>  
-                <Text style={{fontSize: 18 , color:"black"}}>Dirección	Av. Seoane #32 Edificio San Jorge</Text>  
+                <Text style={{fontSize: 18 , color:"black" ,fontFamily: 'Roboto' }}>PALMAS DEL URUBO SRL </Text>         
+                <Text style={{fontSize: 18 , color:"black",fontFamily: 'Roboto'}}>Celular	67789783</Text>         
+                <Text style={{fontSize: 18 , color:"black",fontFamily: 'Roboto'}}>Teléfono	36936558</Text>         
+                <Text style={{fontSize: 18 , color:"black",fontFamily: 'Roboto'}}>Email	urubo@gmail.com</Text>  
+                <Text style={{fontSize: 18 , color:"black",fontFamily: 'Roboto'}}>Dirección	Av. Seoane #32 Edificio San Jorge</Text>  
                        
                 
 

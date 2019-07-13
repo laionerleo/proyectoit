@@ -35,7 +35,7 @@ export default class Menu extends Component {
                 </View>
         <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
         <Button  onPress={() => this.props.navigation.navigate('contactoscreen')}     title="Contacto" />
-        <Button  onPress={() => this.props.navigation.navigate('inicioscreen')}     title="Inicio" />
+        <Button  onPress={() => this.props.navigation.navigate('inicioscreen')}     title="Mis datos" />
         
         <Button  onPress={() => BackHandler.exitApp()}     title="salir" />
 
