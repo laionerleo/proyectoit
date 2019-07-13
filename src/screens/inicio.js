@@ -123,13 +123,13 @@ export default class inicio extends Component {
         <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}></View>
         
         <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}>
-        <Text style={{fontSize: 18, }} > Pagos </Text>
+        <Text style={{fontSize: 18,fontFamily: 'Roboto' }} > Pagos </Text>
         <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}></View>
         </View>
         <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width ,flex: 1, flexDirection: 'row', }}>
-        <Text style={{fontSize: 18,flex: 1 }} > Codigo </Text>
-        <Text style={{fontSize: 18,flex: 1 }} > Plan </Text>
-        <Text style={{fontSize: 18,flex: 1 }} > Pago </Text>
+        <Text style={{fontSize: 18,flex: 1,fontFamily: 'Roboto' }} > Codigo </Text>
+        <Text style={{fontSize: 18,flex: 1 ,fontFamily: 'Roboto' }} > Plan </Text>
+        <Text style={{fontSize: 18,flex: 1,fontFamily: 'Roboto' }} > Pago </Text>
 
         </View>
         <ScrollView    >
@@ -141,9 +141,9 @@ export default class inicio extends Component {
               if(i>=0){
                  
               return (<View style={{flex: 1, flexDirection: 'row',borderBottomColor: '#1D3E5E',borderBottomWidth: 1,}}>
-                <Text style={{ fontSize: 18 , flex: 1 }}> {pago.codigopago}</Text>
-                <Text style={{fontSize: 18, flex: 1}}>  {pago.date} {parseFloat( pago.mount).toFixed(2)  }</Text>
-                <Text style={{fontSize: 18 , flex: 1}}>  {  section.pagos[i].PagoMonto  }</Text> 
+                <Text style={{ fontSize: 18 , flex: 1 ,fontFamily: 'Roboto' }}> {pago.codigopago}</Text>
+                <Text style={{fontSize: 18, flex: 1,fontFamily: 'Roboto'}}>  {pago.date} {parseFloat( pago.mount).toFixed(2)  }</Text>
+                <Text style={{fontSize: 18 , flex: 1,fontFamily: 'Roboto'}}>  {  section.pagos[i].PagoMonto  }</Text> 
                 
               </View>
               
@@ -152,9 +152,9 @@ export default class inicio extends Component {
               }else{ 
                    
                 return <View style={{flex: 1, flexDirection: 'row',borderBottomColor: '#1D3E5E',borderBottomWidth: 1,}}>
-                <Text style={{ fontSize: 18 , flex: 1 }}> {pago.codigopago}</Text>
-                <Text style={{fontSize: 18, flex: 1}}>  {pago.date} {parseFloat( pago.mount).toFixed(2)  }</Text>
-                <Text style={{fontSize: 18 , flex: 1}}>  {  0 }</Text> 
+                <Text style={{ fontSize: 18 , flex: 1 ,fontFamily: 'Roboto',fontFamily: 'Roboto'}}> {pago.codigopago}</Text>
+                <Text style={{fontSize: 18, flex: 1 ,fontFamily: 'Roboto'}}>  {pago.date} {parseFloat( pago.mount).toFixed(2)  }</Text>
+                <Text style={{fontSize: 18 , flex: 1,fontFamily: 'Roboto'}}>  {  0 }</Text> 
                 </View>
               }
               
@@ -203,21 +203,21 @@ export default class inicio extends Component {
                 </View>
                
                 <View style={{borderColor:'#a0b1c1',borderBottomWidth:2.5,borderTopWidth:8}}>
-                  <Text style={{fontSize: 30, color:"black" }}>HOLA   {this.state.loginjson.compras[0].tituales[0].ClienteNombre}</Text>
-                  <Text style={{fontSize: 23,  }}>Telefono  =  {this.state.loginjson.compras[0].tituales[0].ClienteCelular}</Text>
-                  <Text style={{fontSize: 23,  }}>Documento =  {this.state.loginjson.compras[0].tituales[0].ClienteDocumento}</Text>         
+                  <Text style={{fontSize: 30, color:"black" ,fontFamily: 'Roboto'}}>HOLA   {this.state.loginjson.compras[0].tituales[0].ClienteNombre}</Text>
+                  <Text style={{fontSize: 23, fontFamily: 'Roboto' }}>Telefono  =  {this.state.loginjson.compras[0].tituales[0].ClienteCelular}</Text>
+                  <Text style={{fontSize: 23,fontFamily: 'Roboto'  }}>Documento =  {this.state.loginjson.compras[0].tituales[0].ClienteDocumento}</Text>         
                 </View>
                 
                 <View style={{borderColor:'#a0b1c1',borderBottomWidth:8,borderTopWidth:8}}>
-                <Text style={{fontSize: 22,fontFamily:'-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji', fontWeight: 'bold', }}>PALMAS DEL URUBO SRL </Text>
+                <Text style={{fontSize: 22,fontFamily: 'Roboto', }}>PALMAS DEL URUBO SRL </Text>
+                <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width }}/>
+                <Text style={{fontSize: 18, color:"black" ,fontFamily: 'Roboto'}}>Celular   {this.state.loginjson.company.empresaCelular}</Text>
                 <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}/>
-                <Text style={{fontSize: 18, color:"black" }}>Celular   {this.state.loginjson.company.empresaCelular}</Text>
-                <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}/>
-                  <Text style={{fontSize: 18 ,color:"black" }}>Telefono   {this.state.loginjson.company.empresaTelefono}</Text>
+                  <Text style={{fontSize: 18 ,color:"black",fontFamily: 'Roboto' }}>Telefono   {this.state.loginjson.company.empresaTelefono}</Text>
                   <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}/>
-                  <Text style={{fontSize: 18,color:"black" }}>Email    {this.state.loginjson.company.empresaEmail}</Text>
+                  <Text style={{fontSize: 18,color:"black",fontFamily: 'Roboto' }}>Email    {this.state.loginjson.company.empresaEmail}</Text>
                   <View style={{borderBottomColor: '#1D3E5E',borderBottomWidth: 1,width : width , }}/>
-                  <Text style={{fontSize: 18 , color:"black"}}>Direccion    {this.state.loginjson.company.empresaDireccion}</Text>         
+                  <Text style={{fontSize: 18 , color:"black" ,fontFamily: 'Roboto' }}>Direccion    {this.state.loginjson.company.empresaDireccion}</Text>         
                  
                 </View>
               
@@ -304,6 +304,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 22,
+    fontFamily: 'Roboto',
     fontWeight: '300',
     marginBottom: 20,
   },
@@ -314,6 +315,7 @@ const styles = StyleSheet.create({
   headerText: {
   textAlign: 'center',
     fontSize: 18,
+    fontFamily: 'Roboto',
     fontWeight: '500',
     color : "#007bff"
   },

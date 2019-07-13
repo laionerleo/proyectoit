@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     backgroundColor: 'white'
  },
- btn: { flexDirection: 'column', width: width,padding: 5,  } ,
+ btn: { flexDirection: 'column', width: width,padding: 6, height: 55 } ,
  btnicon: {  width:50 , height: 50  } ,
 
 
