@@ -63,15 +63,15 @@ export default class Login extends Component {
                 </View>
                 <View style={{backgroundColor: 'white'}}>
                   <View style={styles.img}>
-                <Text style={{fontSize:40 , justifyContent: 'center', alignItems: 'center', fontFamily: 'Poppins' }}>
+                <Text style={{fontSize:30 , margin: 10,justifyContent: 'center', alignItems: 'center', fontFamily: 'Roboto' }}>
                         Acceso al cliente
                 </Text>
                 </View>
                 
-                    <Text style={{fontSize: 15,marginLeft: 15, color:"black",fontFamily: 'calibri light' }}>Nro. Celular*</Text>
-                    <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='NUMERO DE TELEFONO' onChangeText={(ID) => this.setState({ID})}/>
-                    <Text style={{fontSize: 15, marginLeft: 15,color:"black" ,fontFamily: 'calibri light' }}>Password*</Text>
-                    <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='CARNET DE IDENTIDAD' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
+                    <Text style={{fontSize: 15,marginLeft: 15, color:"black",fontFamily: 'Roboto' }}>Nro. Celular*</Text>
+                    <TextInput style={styles.input}   keyboardType = 'numeric' placeholder='Nro. Celular' onChangeText={(ID) => this.setState({ID})}/>
+                    <Text style={{fontSize: 15, marginLeft: 15,color:"black" ,fontFamily: 'Roboto' }}>Password*</Text>
+                    <TextInput style={styles.input}  keyboardType = 'numeric' secureTextEntry={true} password={true} placeholder='Password' onChangeText={(CONTRASENA) => this.setState({CONTRASENA})} />
                     <View style={styles.btn} >
                               <Button  onPress={this.validar}     title="Entrar" />
                  </View>
@@ -148,13 +148,16 @@ const styles = StyleSheet.create({
   img: {
     flexDirection: 'column' , marginTop:15 , justifyContent: 'center', alignItems: 'center'
   },
+  img1: {
+    flexDirection: 'column' , margin:10 , justifyContent: 'center', alignItems: 'center'
+  },
   input: {
     margin: 15,
-    height: 60,
+    height: 40,
     width: width-30,
-    
+    fontFamily : "Roboto",
     borderWidth: 1,
-    fontSize: 25,
+    fontSize: 15,
     backgroundColor: 'white'
  },
  btn: { flexDirection: 'column', width: width,padding: 5,  } ,
